@@ -1,0 +1,18 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Jupyter Executor Service.
+Resources:
+  JupyterExecutor:
+    Properties:
+      CodeUri: s3://agilevision-playground/e4ed0a3dde00bd937aecadcbb3cea65e
+      Events:
+        ExecuteNotebook:
+          Properties:
+            Method: any
+            Path: /
+          Type: Api
+      Handler: main.handler
+      MemorySize: 512
+      Runtime: python3.6
+      Timeout: 180
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
